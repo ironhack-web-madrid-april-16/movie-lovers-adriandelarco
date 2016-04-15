@@ -3,6 +3,7 @@ require 'haml'
 require 'sinatra/reloader' if development?
 require './lib/imdb.rb'
 require './lib/quizz.rb'
+require './lib/movies_selector.rb'
 require 'pry'
 require 'rubygems'
 
@@ -19,17 +20,20 @@ end
 
 post('/movies') do
   search_method = params['search_method']
-  imdb_data = Imdb_movies.new
+  movies_selector = Movies_selector.new
   if search_method == 'search'
-    search_term = params[:search_term]
-    imdb_data.search(search_term)
+    keyword = params[:keyword]
+    @movies = movies_selector.by_keyword(keyword)
   elsif search_method == 'random'
-    imdb_data.random_search
+    @movies = movies_selector.random
   end
-  @movies = imdb_data.movies
-  quizz = Quizz.new(@movies)
-  @answer = quizz.answer
-  @question = quizz.question
-  @question_id = quizz.question_id
-  haml(:movies)
+  if @movies != nil
+    quizz = Quizz.new(@movies)
+    @answer = quizz.answer
+    @question = quizz.question
+    @question_method = quizz.question_method
+    haml(:movies)
+  else
+    haml(:error)
+  end
 end

@@ -1,10 +1,11 @@
 %h1{:style => "color:#B30000; text-align:center"} Movies
-%p
+%p{:style => "text-align:center"}
 	=@question
 %br/
 %div{:style => "width: 620px; margin: 0 auto"}
 	- @movies.each do |movie|
-		- if movie[@question_id][0] == @answer
-			%img{:src => "#{movie[0][0]}", :alt => "#{movie[1][0]}", :style => "height: 300px; width: 200px", :onClick => "alert('Yeah')"}/
+		- question = @question_method
+		- if movie.send(question) == @answer
+			%img{:src => "#{movie.poster}", :alt => "#{movie.title}", :style => "height: 300px; width: 200px", :onClick => "alert('Yeah')"}/
 		- else
-			%img{:src => "#{movie[0][0]}", :alt => "#{movie[1][0]}", :style => "height: 300px; width: 200px", :onClick => "alert('Nah')"}/
+			%img{:src => "#{movie.poster}", :alt => "#{movie.title}", :style => "height: 300px; width: 200px", :onClick => "alert('Nah')"}/

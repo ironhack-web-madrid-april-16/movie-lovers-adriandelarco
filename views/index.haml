@@ -1,6 +1,6 @@
 %h1 Movie lovers
 %form{:action => "/movies", :method => "POST"}
-	%label{:for => "search_input"}
-	%input{:id => "search_input", :type => "text", :name => "search_term", :placeholder => "Which movie are you looking for?"}/
+	%label{:for => "keyword_input"}
+	%input{:id => "keyword_input", :type => "text", :name => "keyword", :placeholder => "Which movie are you looking for?"}/
 	%button{:type => "submit", :name => "search_method", :value => "search"} SEARCH
 	%button{:type => "submit", :name => "search_method", :value => "random"} RANDOM
