@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
-gem 'rake'
-gem 'rubocop'
-gem 'sinatra'
-gem 'imdb'
 
-group :development do
-    gem 'sinatra-contrib'
-    gem 'rspec'
-end
+gem	'sinatra'
+gem 'sinatra-contrib'
+gem 'rspec'
+gem 'guard'
+gem 'guard-rspec'
+gem 'rack'
+gem 'rack-test'
+gem 'haml'
+gem 'rubocop'
+gem 'guard-rubocop'
+gem 'imdb', '~> 0.8'
+gem 'random-word'
